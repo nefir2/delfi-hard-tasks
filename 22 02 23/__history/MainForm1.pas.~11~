@@ -1,0 +1,48 @@
+unit MainForm1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.Grids, Vcl.ExtCtrls,
+  Vcl.StdCtrls;
+
+type
+  TMainForm = class(TForm)
+    GridOut: TStringGrid;
+    UpDown: TUpDown;
+    Label1: TLabel;
+    editRow: TEdit;
+    buttonRND: TButton;
+    buttonCalc: TButton;
+    buttonExit: TButton;
+    Bevel1: TBevel;
+    Bevel2: TBevel;
+    Bevel3: TBevel;
+    Bevel4: TBevel;
+    procedure buttonExitClick(Sender: TObject);
+    procedure UpDownClick(Sender: TObject; Button: TUDBtnType);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  MainForm: TMainForm;
+
+implementation
+
+{$R *.dfm}
+
+  procedure TMainForm.buttonExitClick(Sender: TObject);
+  begin
+    Application.Terminate();
+  end;
+
+  procedure TMainForm.UpDownClick(Sender: TObject; Button: TUDBtnType);
+  begin
+    GridOut.RowCount := UpDown.Position + 1;
+  end;
+
+end.
