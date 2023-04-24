@@ -1,0 +1,111 @@
+unit Unit6;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.StdCtrls,
+  Vcl.Menus;
+
+type
+  TForm6 = class(TForm)
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    ProgressBar1: TProgressBar;
+    Shape1: TShape;
+    ColorDialog1: TColorDialog;
+    MainMenu1: TMainMenu;
+    PROGRESS1: TMenuItem;
+    MORE1: TMenuItem;
+    LESS1: TMenuItem;
+    BUTTONS1: TMenuItem;
+    FIRST1: TMenuItem;
+    SECOND1: TMenuItem;
+    THIRD1: TMenuItem;
+    SHAPING1: TMenuItem;
+    COLOR1: TMenuItem;
+    changeshape1: TMenuItem;
+    procedure MORE1Click(Sender: TObject);
+    procedure FIRST1Click(Sender: TObject);
+    procedure COLOR1Click(Sender: TObject);
+    procedure LESS1Click(Sender: TObject);
+    procedure SECOND1Click(Sender: TObject);
+    procedure THIRD1Click(Sender: TObject);
+    procedure changeshape1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    shapeI : Integer;
+  public
+    { Public declarations }
+  end;
+
+var
+  Form6: TForm6;
+
+implementation
+
+{$R *.dfm}
+
+  procedure TForm6.changeshape1Click(Sender: TObject);
+  begin
+    if shapei > 5 then shapei := 0;
+    shape1.shape := tshapetype(shapei);
+  end;
+
+  procedure TForm6.COLOR1Click(Sender: TObject);
+  begin
+    if colordialog1.execute() then shape1.Brush.Color := colordialog1.color;
+  end;
+
+
+  procedure TForm6.LESS1Click(Sender: TObject);
+  begin
+    progressbar1.Position := progressbar1.Position - 10;
+    progress1.Caption := 'PROGRESS: ' + IntToStr(progressbar1.Position) + '%';
+    more1.Enabled := progressbar1.Position <> 100;
+    less1.enabled := progressbar1.Position <> 0;
+  end;
+
+  procedure TForm6.MORE1Click(Sender: TObject);
+  begin
+    progressbar1.Position := progressbar1.Position + 10;
+    progress1.Caption := 'PROGRESS: ' + IntToStr(progressbar1.Position) + '%';
+    more1.Enabled := progressbar1.Position <> 100;
+    less1.enabled := progressbar1.Position <> 0;
+  end;
+
+  procedure TForm6.FormCreate(Sender: TObject);
+  begin
+    shapei := 0;
+  end;
+
+  procedure TForm6.FIRST1Click(Sender: TObject);
+  begin
+    first1.Checked := true;
+    second1.Checked := false;
+    third1.Checked := false;
+    button1.Enabled := true;
+    button2.Enabled := false;
+    button3.Enabled := false;
+  end;
+  procedure TForm6.SECOND1Click(Sender: TObject);
+  begin
+    first1.Checked := false;
+    second1.Checked := true;
+    third1.Checked := false;
+    button1.Enabled := false;
+    button2.Enabled := true;
+    button3.Enabled := false;
+  end;
+  procedure TForm6.THIRD1Click(Sender: TObject);
+  begin
+    first1.Checked := false;
+    second1.Checked := false;
+    third1.Checked := true;
+    button1.Enabled := false;
+    button2.Enabled := false;
+    button3.Enabled := true;
+  end;
+
+end.

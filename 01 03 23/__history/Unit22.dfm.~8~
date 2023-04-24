@@ -1,0 +1,97 @@
+object Main: TMain
+  Left = 0
+  Top = 0
+  Caption = 'MAINFORM'
+  ClientHeight = 299
+  ClientWidth = 635
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  Menu = MainMenu1
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object RichEdit1: TRichEdit
+    Left = 8
+    Top = 8
+    Width = 185
+    Height = 89
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Lines.Strings = (
+      'RichEdit1')
+    ParentFont = False
+    TabOrder = 0
+    Zoom = 100
+  end
+  object MainMenu1: TMainMenu
+    Left = 16
+    Top = 248
+    object File1: TMenuItem
+      Caption = 'FILE'
+      object Exit1: TMenuItem
+        Caption = 'EXIT'
+      end
+    end
+    object options1: TMenuItem
+      Caption = 'OPTIONS'
+      object FONT1: TMenuItem
+        Caption = 'FONT'
+        OnClick = Font1Click
+      end
+      object Color1: TMenuItem
+        Caption = 'COLOR'
+        OnClick = Color1Click
+      end
+      object N1: TMenuItem
+        Caption = '-'
+      end
+      object Left1: TMenuItem
+        Caption = 'LEFT'
+        Checked = True
+        ShortCut = 16460
+        OnClick = Left1Click
+      end
+      object Center1: TMenuItem
+        Caption = 'CENTER'
+        ShortCut = 16453
+        OnClick = Center1Click
+      end
+      object Right1: TMenuItem
+        Caption = 'RIGHT'
+        ShortCut = 16466
+      end
+      object N3: TMenuItem
+        Caption = '-'
+      end
+      object Height1: TMenuItem
+        Caption = 'HEIGHT'
+      end
+    end
+    object Help1: TMenuItem
+      Caption = 'HELP'
+      object ABOUT1: TMenuItem
+        Caption = 'ABOUT'
+      end
+    end
+  end
+  object FontDialog1: TFontDialog
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Left = 80
+    Top = 248
+  end
+  object ColorDialog1: TColorDialog
+    Left = 144
+    Top = 248
+  end
+end

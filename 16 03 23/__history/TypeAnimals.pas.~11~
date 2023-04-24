@@ -1,0 +1,63 @@
+unit TypeAnimals;
+interface
+  type //ну и какой гений решил не говорить что нужно указать ключевое слово "type"? даже не сказали куда его писать. просто сказали сделать класс, А КАК?????
+    TAnimal = class(TObject) //ну и как я должен был до этого догадаться?
+      public //оказалось что ещё и точку с запятой нужно убрать на объявлении класса. НУ ПОЧЕМУ ЭТОГО НЕ ГОВОРЯТ СРАЗУ?
+        constructor Create(); //и почему не говорят что эта ошибка и должна быть? они что, сами писали в блокноте?
+        function GetKind: string; virtual; abstract; //и никто не сказал как это реализовывать.    //хорошо. раз не сказано, сделаю абстрактным.
+        function Voice: string; virtual; abstract;
+      private Kind: String;
+    end; //к счастью делфи помог и сам подставил это. если бы не делфи я бы и дальше сидел страдал не понимая что не так. ужасная практическая которая ничего не объясняет. я впервые вижу этот язык, но каким-то магическим образом уже должен знать весь его синтаксис.
+    TDog = class(TAnimal)
+      public
+        constructor Create();
+        function Voice: string; override;
+        function Eat: string; virtual; //почему он вирутальный?
+        function EarLength(): string; virtual; abstract;
+        function Height(): string; virtual; abstract;
+        function WoolLength(): string; virtual; abstract;
+        function PorodaName(): string; virtual; abstract;
+    end;
+    TCat = class(TAnimal)
+      public
+        constructor Create();
+        function Voice: string; override;
+        function Eat: string; virtual; //почему они оба виртуальные?
+    end;
+    TOvcharka = class(TDog)
+      public
+        constructor Create();
+        function PorodaName(): string; override;
+        function EarLength(): string; override;
+        function Height(): string; override;
+        function WoolLength(): string; override;
+    end;
+    TTaxa = class(TDog)
+      public
+        constructor Create();
+        function PorodaName(): string; override;
+        function EarLength(): string; override;
+        function Height(): string; override;
+        function WoolLength(): string; override;
+    end;
+implementation
+  constructor TAnimal.Create(); begin Kind := 'AN ANIMAL'; end; //оказывается их нужно было тут же реализовывать.
+  constructor TDog.Create(); begin Kind := 'A DOG'; end; //почему. этого. сразу. не. говорят.
+  constructor TCat.Create(); begin Kind := 'A CAT'; end; //я впервые вижу язык откуда мне знать что я должен здесь делать?
+  function TDog.Voice(): string; begin Voice := 'BARK'; end; //ну и с чего вдруг чтобы вернуть значение, его нужно присвоить имени функции?
+  function TCat.voice(): string; begin Voice := 'MEOW'; end;
+  function TDog.Eat(): string; begin EAT := 'MEAT' end;
+  function TCat.Eat(): string; begin EAT := 'FISH' end;
+
+  //задание №1
+  constructor TOvcharka.Create(); begin Kind := 'A DOG. PORODA: OVCHARKA'; end;
+  constructor TTaxa.Create(); begin Kind := 'A DOG. PORODA: TAXA'; end;
+  function TOvcharka.Height(): string; begin Height := '70 CM'; end;
+  function TOvcharka.EarLength(): string; begin EarLength := '10 CM'; end;
+  function TOvcharka.WoolLength(): string; begin WoolLength := '7 CM'; end;
+  function TOvcharka.PorodaName(): string; begin porodaname := 'OVCHARKA'; end;
+  function TTaxa.WoolLength(): string; begin woollength := '2 CM'; end;
+  function TTaxa.Height(): string; begin height := '20 CM'; end;
+  function TTaxa.EarLength(): string; begin earlength := '12 CM'; end; //нигде нет никаких значений. придётся выдумывать.
+  function TTaxa.PorodaName(): string; begin porodaname := 'TAXA'; end;
+end.

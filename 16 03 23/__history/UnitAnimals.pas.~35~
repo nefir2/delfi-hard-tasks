@@ -1,0 +1,116 @@
+unit UnitAnimals;
+
+interface
+
+  uses
+    Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, TypeAnimals, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+  type
+    TAnimals = class(TForm)
+      RadioButtonAnimal: TRadioButton;
+      RadioButtonDog: TRadioButton;
+      RadioButtonCat: TRadioButton;
+      ButtonKind: TButton;
+      LabelVOICE1: TLabel;
+      LabelEAT1: TLabel;
+      CheckBox1: TCheckBox;
+      CheckBox2: TCheckBox;
+      Panel1: TPanel;
+      Panel2: TPanel;
+      infolabel1: TLabel;
+      VALUELABEL1: TLabel;
+      infolabel2: TLabel;
+      VALUELABEL2: TLabel;
+      infolabel3: TLabel;
+      VALUELABEL3: TLabel;
+      procedure FormCreate(Sender: TObject);
+      procedure RadioButtonAnimalClick(Sender: TObject);
+      procedure RadioButtonDogClick(Sender: TObject);
+      procedure RadioButtonCatClick(Sender: TObject);
+      procedure ButtonKindClick(Sender: TObject);
+      procedure HideCheckBoxes();
+      procedure CheckBox1Click(Sender: TObject);
+      procedure ShowPoroda(poroda: IDogPoroda);
+      private
+        MyAnimal: TAnimal;
+      public
+        { Public declarations }
+    end;
+
+  var
+    Animals: TAnimals;
+    Poroda1: IDogPoroda;
+    poroda2: IDogPoroda;
+
+implementation
+
+{$R *.dfm}
+
+  procedure TAnimals.ButtonKindClick(Sender: TObject);
+  begin
+    labelvoice1.Caption := MyAnimal.Voice();
+    if MyAnimal is TDog then labeleat1.Caption := (MyAnimal as TDog).Eat()
+    else if MyAnimal is TCat then labeleat1.Caption := (MyAnimal as TCat).Eat();
+  end;
+
+  procedure TAnimals.CheckBox1Click(Sender: TObject);
+  var gottenCB: tcheckbox;
+  begin
+    gottenCB := sender as tcheckbox;
+    Panel2.Visible := true;
+    if gottenCB.Checked = true then
+    begin
+      if gottenCB = checkbox1 then checkbox2.Checked := false
+      else checkbox1.Checked := false;
+      if gottenCB.Caption = poroda1.PorodaName() then ShowPoroda(poroda1)
+      else if gottenCB.Caption = poroda2.PorodaName() then showporoda(poroda2);
+    end
+    else panel2.Visible := false;
+  end;
+
+  procedure TAnimals.ShowPoroda(poroda: IDogPoroda);
+  begin
+    valuelabel1.Caption := poroda.Height();
+    valuelabel2.Caption := poroda.EarLength();
+    valuelabel3.Caption := poroda.WoolLength();
+  end;
+
+  procedure TAnimals.FormCreate(Sender: TObject);
+  begin
+    MyAnimal := TDog.Create();
+  end;
+
+  procedure TAnimals.RadioButtonAnimalClick(Sender: TObject);
+  begin
+    MyAnimal.Free();
+    MyAnimal := TAnimal.Create();
+    HideCheckBoxes();
+  end;
+
+  procedure TAnimals.RadioButtonCatClick(Sender: TObject);
+  begin
+    MyAnimal.Free();
+    MyAnimal := TCat.Create();
+    HideCheckBoxes();
+  end;
+
+  procedure TAnimals.RadioButtonDogClick(Sender: TObject);
+  begin
+    MyAnimal.Free();
+    MyAnimal := TDog.Create();
+    Poroda1 := TOvcharka.Create();
+    Poroda2 := TTaxa.Create();
+    checkbox1.Caption := Poroda1.PorodaName();
+    checkbox2.Caption := Poroda2.PorodaName();
+    checkbox1.Visible := true;
+    checkbox2.Visible := true;
+  end;
+
+  procedure TAnimals.HideCheckBoxes();
+  begin
+    panel2.Visible := false;
+    checkbox1.Visible := false;
+    checkbox2.Visible := false;
+  end;
+
+end.

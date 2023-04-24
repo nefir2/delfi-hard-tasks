@@ -1,0 +1,69 @@
+unit Unit4;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Menus, Vcl.ExtCtrls,
+  System.ImageList, Vcl.ImgList;
+
+type
+  TForm4 = class(TForm)
+    RadioGroup1: TRadioGroup;
+    MainMenu1: TMainMenu;
+    NORMALPART1: TMenuItem;
+    BEEP1: TMenuItem;
+    ABOUT1: TMenuItem;
+    EXIT1: TMenuItem;
+    ANOMALPART1: TMenuItem;
+    Edit1: TEdit;
+    Button1: TButton;
+    ImageList1: TImageList;
+    procedure BEEP1Click(Sender: TObject);
+    procedure ABOUT1Click(Sender: TObject);
+    procedure EXIT1Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form4: TForm4;
+
+implementation
+
+{$R *.dfm}
+
+  procedure TForm4.ABOUT1Click(Sender: TObject); //в задании сказано что этот метод такой же как и Beep1Click, но, вообще-то, about1click уже определён. какой гений писал задание, и в нём устроил противоречие?
+  begin
+    Application.MessageBox('!!!', '...', 0);
+    if (Sender as TMenuItem).Owner = AnomalPart1 then
+    AnomalPart1.Remove(Sender as TMenuItem);
+  end;
+
+  procedure TForm4.BEEP1Click(Sender: TObject);
+  begin
+    MessageBeep($FFFFFFFF);
+    if (Sender as TMenuItem).Owner = anomalpart1 then AnomalPart1.Remove(Sender as TMenuItem);
+  end;
+
+  procedure TForm4.Button1Click(Sender: TObject);
+  var I: TMenuItem;
+  begin
+    I := TMenuItem.Create(AnomalPart1);
+    I.Caption := Edit1.Text;
+    I.ImageIndex := Random(ImageList1.Count);
+    I.Checked := Random(1) = 1; //ничего не меняется...
+    case RadioGroup1.ItemIndex of
+      0: I.OnClick := Beep1Click;
+      1: I.OnClick := About1Click;
+      2: I.OnClick := Exit1Click;
+    end;
+    AnomalPart1.Add(I);
+  end;
+
+  procedure TForm4.EXIT1Click(Sender: TObject); begin Application.Terminate(); end;
+
+end.

@@ -1,0 +1,79 @@
+object Animals: TAnimals
+  Left = 0
+  Top = 0
+  Caption = 'ANIMALS'
+  ClientHeight = 191
+  ClientWidth = 305
+  Color = clBtnShadow
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object LabelVOICE1: TLabel
+    Left = 120
+    Top = 125
+    Width = 47
+    Height = 19
+    Caption = 'VOICE'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object LabelEAT1: TLabel
+    Left = 120
+    Top = 150
+    Width = 30
+    Height = 19
+    Caption = 'EAT'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object RadioButtonAnimal: TRadioButton
+    Left = 24
+    Top = 32
+    Width = 113
+    Height = 17
+    Caption = 'ANIMAL'
+    TabOrder = 0
+    OnClick = RadioButtonAnimalClick
+  end
+  object RadioButtonDog: TRadioButton
+    Left = 24
+    Top = 71
+    Width = 113
+    Height = 17
+    Caption = 'DOG'
+    TabOrder = 1
+    OnClick = RadioButtonDogClick
+  end
+  object RadioButtonCat: TRadioButton
+    Left = 24
+    Top = 102
+    Width = 113
+    Height = 17
+    Caption = 'CAT'
+    TabOrder = 2
+    OnClick = RadioButtonCatClick
+  end
+  object ButtonKind: TButton
+    Left = 194
+    Top = 39
+    Width = 81
+    Height = 33
+    Caption = 'KIND'
+    TabOrder = 3
+    OnClick = ButtonKindClick
+  end
+end
